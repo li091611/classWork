@@ -1,48 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
 <script>
-/*  下载安装git完成以后
-    git config --global user.nema 个人用户名字
-    git config --global user.email 邮箱
-    //初始化个人信息 一个电脑初始一次即可
-
-    gir config --list 用来产看个人信息
-
-    git init 把本地文件夹初始化成git仓库
-    //工作区，缓存区 历史区
-    平时写代码都是在工作区
-    git status 查看本地仓库的状态
-            红色 工作区有修改没有提交到缓存区
-            绿色 工作区的修改提交到了缓存区 但是缓存区的内容 没有被提到历史区
-
-    git add . 把所有文件提交到缓存区
-    git commit -m ‘备注’ 把缓存区的所有内容都提交到历史区
-
-    //把本地历史区的代码提交到 远程仓库 (gitHub gitlap 码云)
-    //首先得有远程仓库
-    把远程仓库和本地仓库建立起链接  git remote add origin  远程仓库地址
-    // git push 把本地代码提交到远程仓库 首次push的时候 需按照提示进行提交
-
-    //提交代码的流程 git add . --->git commit -m '注释'  --->  git push
-
-    //若多人合作 那么 提交之前 git push 之前 一般都会要求 git pull 下拉一下
-    // git pull把远程仓库代码下拉到本机 
-
-
-    第二种建仓库
-    现在远程创建一个仓库 然后通过 git clone 远程仓库地址 的方式把远程仓库克隆到本地
-    然后进行代码开发
-
+    /*  下载安装git完成以后
+        git config --global user.nema 个人用户名字
+        git config --global user.email 邮箱
+        //初始化个人信息 一个电脑初始一次即可
     
-*/
+        gir config --list 用来产看个人信息
+    
+        git init 把本地文件夹初始化成git仓库
+        //工作区，缓存区 历史区
+        平时写代码都是在工作区
+        git status 查看本地仓库的状态
+                红色 工作区有修改没有提交到缓存区
+                绿色 工作区的修改提交到了缓存区 但是缓存区的内容 没有被提到历史区
+    
+        git add . 把所有文件提交到缓存区
+        git commit -m ‘备注’ 把缓存区的所有内容都提交到历史区
+    
+        //把本地历史区的代码提交到 远程仓库 (gitHub gitlap 码云)
+        //首先得有远程仓库
+        把远程仓库和本地仓库建立起链接  git remote add origin  远程仓库地址
+        // git push 把本地代码提交到远程仓库 首次push的时候 需按照提示进行提交
+    
+        //提交代码的流程 git add . --->git commit -m '注释'  --->  git push
+    
+        //若多人合作 那么 提交之前 git push 之前 一般都会要求 git pull 下拉一下
+        // git pull把远程仓库代码下拉到本机 
+    
+    
+        第二种建仓库
+        现在远程创建一个仓库 然后通过 git clone 远程仓库地址 的方式把远程仓库克隆到本地
+        然后进行代码开发
+    
+        
+    */
+
+    //undefinde,undefinde
+    //lily,undefinde
+    //candy,14
+    //candy,18
+    var a = 1;
+    function fn() {
+        console.log(a);//undefinde
+        var a = 5;
+        console.log(a);//5
+        a++;
+        var a;
+        fn3();
+        fn2();
+        console.log(a);//20
+        function fn2() {
+            console.log(a);//6
+            a = 20;
+        }
+    }
+    function fn3() {
+        console.log(a);//1
+        a = 200;
+    };
+    fn();
+    console.log(a);//200
 </script>
