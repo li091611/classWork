@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+</body>
+
+</html>
+<script>
+    /*
+        ***箭头函数中没有this和arguments；***它是把这两者当做普通变量对待了
+                    箭头函数中的this 是指向了 上级作用域的this
+
+        this 就是 函数执行主体
+
+        事件绑定中的this 就是当前绑定的元素
+        自执行函数中的this 是window
+        定时器中的this   也是window
+
+        this 的指向是谁，我们可以通过看点的方式来确定；函数执行 点 前面是谁 this 就是谁，
+                        没点就是window
+    
+    */
+    let btns = document.querySelectorAll('button');
+    [...btns].forEach(item => {
+        item.onclick = function (){
+            console.log(this)
+        }
+    })
+  
+    setTimeout(function(){
+        console.log(this); 
+    },2000)
+    var num =1;
+    var obj = {
+        num:10,
+        fn:(function(){
+            this.num *=3;
+            return function(){
+                num +=2;
+                this.num++;
+            }
+        })()
+    }
+    var f = obj.fn;
+    f();
+    obj.fn();
+    console.log(num,obj.num)
+
+
+obj={
+    num = 1//4
+}
+4
+
+this.num = n//undefide
+6
+</script>
