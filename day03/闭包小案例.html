@@ -71,4 +71,25 @@
     }
     fn(x);
     console.log(x);
+    ///==================================================================================
+    var x = 0;
+    ~ function () {
+        console.log(x);
+        var x = x && 1 || 2 && 3 || 4;
+        console.log(x);
+    }(x);
+    console.log(x);
+///==================================================================================
+    var x = 1;
+var obj = {
+    x: 2,
+    fn: function (x) {
+        this.x *= ++x;
+        console.log(x);
+    }
+};
+var fn = obj.fn;
+obj.fn(3);
+fn(4);
+console.log(x, obj.x);
 </script>

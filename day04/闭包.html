@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*
+        闭包：
+            不销毁的作用域
+            一种变量保护机制，保护变量值，不受外界污染
+        简单的模块化开发：
+        缺点：
+        用多了会引起内存泄漏
+    
+    */
+    //    function fn(){
+    //        var a =10;
+    //        var f = function(){
+    //            console.log(a)
+    //        }
+    //        return f
+    //    }
+    //    fn()()
+    //隔一秒输出一个数；
+
+    function fn(m) {
+        for (let i = 0; i < m; i++) {
+            (function (i) {
+                setTimeout(() => {
+                    console.log(i+1);
+                }, 1000 * (i + 1))
+            })(i);
+        // console.log(i);
+        }
+        
+    }
+    fn(4)
+    
+</script>
