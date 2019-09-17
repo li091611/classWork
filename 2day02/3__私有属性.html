@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*
+        in 是用来查看 某个属性 是否属于某个对象：换句话说 就是 该对象能不能调用到该属性；
+        in 只能判断出 某个属性是不是某个对象；但是不能判断出是否是他的私有属性
+        obj.hasOwnProperty('xxx') 用来查看xxx是否是 obj的私有属性
+        hasOwnProperty 方法在基类的原型上，所以任何数据类型（除去 null undefinde）都能调用到该方法
+    */
+
+    //判断此属性是不是共有方法
+    Object.prototype.hasPubProperty = function (x) {
+        // if(x in this && !this.hasOwnProperty(x))return true;
+        return false;
+        return (x in this && !this.hasOwnProperty(x))
+        // return (x in this && !this.hasOwnProperty(x) ? true :false)
+
+    }
+</script>

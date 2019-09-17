@@ -25,7 +25,7 @@
     }(x, y);
     console.log(x, y);//[0,1][10]
 </script> -->
-<script>
+<!-- <script>
     function Fn() {
         this.x = 100;
         this.y = 200;
@@ -61,4 +61,22 @@
     f1.sum();//300
     Fn.prototype.sum();//NaN
 
+</script> -->
+<script>
+    var x = 1,
+        y = 2;
+    function fn(x) {
+        this.x *= (++x);
+        fn = function (y) {
+            this.y *= (--y);
+            console.log(x + y);
+        }
+        console.log(x + y);
+        return fn;
+    }
+    fn(3)(4);
+    // console.log(fn);
+    
+    fn(5);
+    console.log(x + y);
 </script>
