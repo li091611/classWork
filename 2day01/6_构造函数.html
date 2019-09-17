@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // function factory(name,age=10,sex=1){
+    //     name = name || 'zf' //es5默认值
+    //     var obj = {
+    //         name,age,sex,
+    //         eat(){
+                
+    //         },
+    //         play(){
+
+    //         }
+    //     }
+    //     return obj;
+    // }
+    // var per11 = factory('小明',10,1);
+    // var per2 = factory(null,null,null);
+    // console.log(per2)
+
+    function Person(name,age,sex){
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.eat = function(){}
+        this.play = function(){}
+        var ok = {}
+        // return ok
+    }
+    var per22 = Person('小明',100,2)
+    var per1 = new Person('小明',100,2)
+    //new 执行函数的时候 函数内部的this 都是指向一个堆内存；函数指向完成之后，又把this返回出去了
+    //若写了返回值，但是返回的是一个值类型，那么默认返回仍然是this；
+    //若写了返回值，返回值是一个引用数据类型的，那么返回值是引用数据类型
+    console.log(per1);
+
+    //es6中箭头函数不能通过new 的方式执行，
+    //es6创造类的方式是通过class
+    // 只能通过new的方式执行
+    var FN = ()=>{
+        this.name=111;
+    }
+    class FN3{
+        constructor(name,age){
+            this.name = name;
+            this.age = age 
+        }
+        eat(){
+
+        }
+        play(){
+
+        }
+    }
+    var f3 = new FN3('小明',200,1);
+    console.log(f3)
+</script>
