@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //实现一个判断数据类型的方法 getType()
+    Object.prototype.getType = function () {
+        var str = this.constructor.toString();
+        str = str.slice(9, str.indexOf('('))
+        return str.toLowerCase();
+    }
+    ''.getType();
+    (1).getType();
+    [].getType();
+
+    // myPop  myPush  返回值是该变后的原有数组
+
+    var ary = [1, 2, 3, 4, 5]
+    Array.prototype.myPop = function () {
+        this.length--;
+        return this
+    }
+    Array.prototype.myPush = function (...arg) {
+        var l = arg.length;
+        for (var i = 0; i < l; i++) {
+            this[this.length] = arg[i]
+        }
+        return this
+    }
+    ary.myPop().myPush(6, 6, 6).myPop().myPush(4, 5, 6)
+
+
+    Array.prototype.myRevese = function () {
+        for (var i = 0; i < this.length; i++) {
+            var temp = this[i];
+            this[i] = this[this.length-1-i];
+            this[this.length-1-i] = temp;
+        }
+        return this;
+    }
+
+
+
+    Array.prototype.myUnique = function(){
+        var arr = [...(new Set(this))]
+        this.length = 0;
+        this.push(...ary);
+        return this; 
+    }
+</script>

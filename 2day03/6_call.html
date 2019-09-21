@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //call 是用来改变函数this的指向
+    var obj = {
+        a: 12,
+        b: 13,
+        f: fn,
+    }
+
+    function fn() {
+        // console.log([...arguments])
+        console.log(this)
+        // console.log('——————————————————————————————');
+    }
+    // call 可以让函数执行，并且也可以改变函数执行时，函数内部this对的指向，
+    //      this指向了 call的第一个参数，call后面的参数，都被作为了实参传给了 前面的函数
+    //call 方法是在 Function类的原型上
+
+    // 自己实现一个myCall方法 用法等同于  Call
+    // fn.call(obj, 6, 6, 6)
+    Function.prototype.myCall = function myCall(context, ...arg) {
+        // this   --->fn
+        // this(...arg)
+        // 让 fn （this）执行，并让 函数中的this是context
+        // this = context
+        context = context || window;
+        let a = Symbol();
+        context[a] = this;
+        let res = context[a](...arg);
+        delete context[a]
+        return res
+    }
+    fn.myCall(obj,1)
+</script>

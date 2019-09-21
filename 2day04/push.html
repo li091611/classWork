@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    Array.prototype.mypush = function (...arg){
+        let ary = this.concat([...arg]);
+        ary.forEach((item,index)=>{
+            this[index] = item
+        })
+        return this
+    }
+    var a = [1,2,3,4]
+    // a.mypush(22,3,4)
+</script>

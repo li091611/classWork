@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*
+        原型链 属性的查找机制：当我们调用一个属性时，先在自己身上找，没有的话 就会通过__proto__
+                向所属类的原型上查找，没有的话 在通过原型的__proto__向上级查找，直到找到基类
+
+        每一个函数（类）都有一个 默认的 prototype属性，指向自己的原型对象
+        每一个实例（对象）都有一个__proto__的属性，指向所属类的原型对象；
+        每一个默认的原型对象 都有一个 constructor的属性 指向对应函数本身
+
+        hasOwnProperty 方法在基类原型上，
+        constructor 判断数据类型：原型重构(Person.prototype = {constructor:Person})
+        xxx instanceof zzz; 从xxx到基类的原型链上 是否存在zzz的身影；不适合基本数据类型
+    */
+</script>

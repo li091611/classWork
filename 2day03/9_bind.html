@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*
+        bind 用法跟call 一样 ；bind的返回值是一个新函数；新函数执行时 fn中的this这时候才改成obj、   call apply 都是让函数立即执行，但是bind是返回了一个新函数；
+    */
+    var obj = {
+        a: 12,
+        b: 13,
+        f: fn,
+    }
+    function fn() {
+        // console.log([...arguments]);
+        // console.log(this);
+        // console.log('——————————————————————————————');
+    }
+    fn.bind(obj,123,12)()
+    //实现一个mybind 用法等同于bind
+    Function.prototype.mybind = function (context,...arg){
+        //this   === fn
+        var _this = this;
+        return function(ary){
+          return  _this.apply(context,arg.cancat(ary))
+        }
+    }
+    var f2 = fn.mybind(obj,6,6,6,6) 
+    f2()
+</script>

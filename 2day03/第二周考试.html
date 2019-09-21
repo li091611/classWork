@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!-- <script>
+    // var name = "WINDOW";
+    // function fn() {
+    //     console.log(this.name);
+    // }
+    // var obj = {
+    //     name: "OBJ",
+    //     fn: () => {
+    //         console.log(this.name);
+    //     }
+    // };
+    // fn();
+    // obj.fn();
+    // fn.call(obj);
+    // window.onload = function () {
+    //     //页面加载完成，事件就会触发
+
+
+    //     fn();
+    //     obj.fn();
+    // };
+    // fn.bind(obj);
+    // ------------------------------------------------------------------------------------
+    var print = function () { alert(1); }
+    // var Foo = function(){}
+    function Fn() {
+        print = function () { alert(2); }
+        return this;
+    }
+    function print() { alert(3); }//相当于没用了
+    // Foo.prototype.print = function () { alert(4); }
+    Fn.print = function () { alert(5); }
+
+    // print();//弹出1
+    // Fn.print();//5
+    // Fn().print();//2
+    // new Fn.print();//5
+    console.log(new Fn().print());
+    // -------------------------------------------------------------------------------------
+    function Fn(n, m) {
+        n = n || 0;
+        m = m || 0;
+        this.x = n;
+        this.y = m;
+        this.getX = function () {
+            console.log(this.x);
+        }
+        return n + m;
+    }
+    Fn.prototype.sum = function () {
+        console.log(this.x + this.y);
+    }
+    Fn.prototype = {
+        getX: function () {
+            this.x += 1;
+            console.log(this.x);
+        },
+        getY: function () {
+            this.y -= 1;
+            console.log(this.y);
+        }
+    };
+    let f1 = new Fn(10, 20); // n=10, m=20,x=10,y=20,this.gtx = f  log//30
+    let f2 = new Fn;
+    console.log(f1.getX === f2.getX);//f
+    console.log(f1.getY === f2.getY);//t
+    console.log(f1.__proto__.getY === Fn.prototype.getY);//t
+    console.log(Fn.prototype.getX === f2.getX);//f
+    console.log(f1.constructor);// n=10, m=20,
+    f1.getX();//10
+    Fn.prototype.getX();//na
+    f2.getY();//-1
+    Fn.prototype.getY();
+    f1.sum();//报错
+</script> -->
+<script>
+    let num = 10;
+
+    Number.prototype.plus = function plus(a) {
+        return this + a
+    }
+    Number.prototype.minus = function (a) {
+        return this - a
+    }
+    num = num.plus(10).minus(20);
+    console.log(num);//=>0 （10+10-20）
+</script>

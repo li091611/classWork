@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // apply 功能类似于 call
+    var obj = {
+        a: 12,
+        b: 13,
+        f: fn,
+    }
+
+    function fn() {
+        console.log([...arguments]);
+        console.log(this);
+        console.log('——————————————————————————————');
+    }
+    // fn.call(obj,5,6,7,8)
+    //第二个参数是个数组或者类数组的集合；虽然传过去是一个集合的形式传过去；但是fn接收时还会一一对应
+
+    // fn.apply(obj,[5,6,7,8])
+    Function.prototype.myapply = function myapply(context, arg) {
+        // this   --->fn
+        // 让 fn （this）执行，并让 函数中的this是context
+        // this = context
+        arg = arg || [];
+        context = context || window;
+        let a = Symbol();
+        context[a] = this;
+        let res = context[a](...arg);
+        delete context[a]
+        return res
+    }
+    // fn.apply()
+    // fn.myapply(obj)
+
+
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    var p = new Person('珠峰', 19)
+    console.log(p);
+
+
+    function myNew(...arg) {
+        // Person, name, age
+        var obj = {};
+        var Construtor = arg.shift()
+        obj.__proto__ = Construtor.prototype;
+        var res = Construtor.call(obj, ...arg);
+        return typeof res === 'object' ? res : obj;
+    }
+    // var p1 = myNew Array(1,2,43,3) 
+    var p2 = new Array(1,21,32)
+    var p3 = myNew(Array,3,2,4)
+</script>

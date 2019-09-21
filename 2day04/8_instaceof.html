@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+ 
+</body>
+
+</html>
+<script>
+    // xxx instanceof  xxx2   ;xxx到基类的原型链上 有没有  xxx2的原型
+    // 所有的引用数据类型 instanceof  Object 都是ture
+    // 所有的值类型 instanceof  任意  都是 false
+
+    function myinstanceof(temp, classN) {
+        // temp 通过__proto__向上查找的时候
+        // 若某次的temp.__proto__ === classN.prototype  返回true
+        // 当某次的 __proto__ === null; 这是返回返回  false
+        // temp.__proto__   classN.prototype
+        let str = typeof temp;
+        if(str !=='object' && str !=='function')return false;
+        var left = temp.__proto__,
+            right = classN.prototype;
+        if (left === right) return true
+        while (left) {
+            if (left === right) return true
+            left = left.__proto__
+        }
+        return false
+    }
+    myinstanceof({}, Array)
+</script>

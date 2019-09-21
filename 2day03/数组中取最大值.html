@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+    let ary = [12, 23, 12, 13, 13, 12, 23, 14, 8];
+    //=>实现你的代码（至少三种）
+    /*
+    Math.max(...ary)
+    console.log(Math.max(...ary));
+    
+    Math.max.apply(Math,ary)
+    console.log(Math.max.apply(Math,ary));//利用了 apply 可以把散乱的传给前面的函数
+    
+    */
+
+    let obj = {}
+    ary.forEach((item, index) => {
+        obj[item] = item
+        return obj
+    })
+    Object.values(obj)[Object.values(obj).length-1]
+    
+    
+    // obj.splice(':')
+
+    let str = 'sadasfdsdafsafsafdfdsgdfs'
+
+
+    console.log(str.split('').sort().join(''));
+</script>

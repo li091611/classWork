@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="log">
+        <input type="text" placeholder="请输入用户名">
+        <input type="password" placeholder="请输入密码">
+        <button id="log_btn">登录</button>
+    </div>
+
+    <div id="reg" style="display: none">
+        <input type="text" placeholder="请输入用户名">
+        <input type="password" placeholder="请输入密码">
+        <button id="reg_btn">注册</button>
+    </div>
+
+    <a href='#' id='log_a'>登录</a>
+    <a href='#' id='reg_a'>注册</a>
+</body>
+
+</html>
+<script>
+    log_a.onclick = function () {
+        log.style.display = 'block';
+        reg.style.display = 'none'
+    }
+    reg_a.onclick = function () {
+        log.style.display = 'none';
+        reg.style.display = 'block'
+    }
+    var logModel = (function () {
+        var box = document.getElementById('log'),
+            name = box.querySelectorAll('input')[0],
+            psw = box.querySelectorAll('input')[1],
+            log_btn = box.querySelector('#log_btn'),
+            bind = function () {
+                log_btn.onclick = function () {
+                    console.log(`登录信息是：${name.value}----${psw.value}`);
+
+                }
+            }
+        return {
+            init() {
+                bind();
+                return name.value
+            }
+        }
+    })();
+    logModel.init();
+    
+    //单例模式就是一个普通对象 把要用到的方法或者属性都放到一个对象里面；这个对象我们成为命名空间
+    //一般用来作用 工具库的  封装；
+
+    //高级单利模式 其实就是一个闭包 一般可以用于普通模块开发
+    var obj = (function () {
+        var name = 123;
+        var ager = 234;
+        var init = function () {
+            console.log(name, age);
+
+        }
+        return {
+            init
+        }
+    })()
+</script>
