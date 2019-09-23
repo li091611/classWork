@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*
+        面向对象；
+        面向过程
+        单例模式 高级单例模式 工厂模式 构造函数模式 原型模式
+
+        每一个函数 都有一个天生自带的属性 prototype 指向自己的原型对象
+        每一个对象  都天有一个天生自带的属性 __prototy__ 指向所属类的原型
+        每一个默认的原型对象 都有一个天生的属性  constructor 指向对应构造函数本身
+        原型链： 属性的查找机制，现在自己身上查找对应属性 没有的话 就会通过__proto__ 查找所属类的原型    
+    */
+    function Fn() {
+        var a = 1;
+        this.a = a;
+    }
+    Fn.prototype.say = function () {
+        this.a = 2;
+    };
+    var f2 = new Fn();
+    Fn.prototype = new Fn;
+    var f1 = new Fn;
+    f1.__proto__.b = function () {
+        this.a = 3;
+    };
+    console.log(f1.a);
+    console.log(f1.prototype);
+    console.log(f1.b);
+    console.log(f2.b);
+    console.log(f1.hasOwnProperty('b'));
+    console.log('b' in f1);
+    console.log(f1.constructor == Fn);
+    console.log(Fn.prototype);
+</script>

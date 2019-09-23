@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 类 的继承 封装(高内聚 低耦合) 多态
+    function Person() {
+        // call 继承 这种方式只能继承私有属性；
+        Animal.call(this,10000);//把Animal中的this 换成了当前的实例；把10000传个了 Animal
+        this.name = name;
+        this.age = age;
+    }
+    // Person.prototype = Animal.prototype;//让Person的原型 指向 Animal的原型
+    Person.prototype = new Animal();//让Person的原型 指向 Animal 的实例
+    Person.prototype = Object.create(Animal.prototype);//create创造了一个空对象 空对象的__proto__ 指向了 Animal的prototype
+    Person.prototype.eat = function () {
+        console.log('吃');
+    }
+    function Animal() {
+        this.iq = 666;
+    }
+    Animal.prototype.move = function () {
+        console.log('能动');
+    }
+    Animal.prototype.sleep = function () {
+        console.log('休息');
+    }
+    var p1 = new Person('小明', 100);
+    p1.move();
+    //---------------------------------------------------------------------
+    //实现Object.create
+    function create(proto) {
+        function F() { }
+        F.prototype = proto;
+
+        return new F();
+    }
+
+    //-----------------------------------------------------------------------
+    // es5继承
+    class Parent{
+        constructor (){
+            this.name = name;
+            this.age = 100;
+        }
+        say(){
+            console.log('hello perent');
+        }
+        static qqq = 245;//静态属性
+    }
+    class Child extends Parent{
+        constructor(){
+            super(); //写了 extents 和constructor；  则必须写 super() 其实就是 Parent 的constructor
+            this.money = 100;
+        }
+        play(){
+            console.log('child play');
+        }
+    }
+    var xm = new Child();
+    console.log(xm);
+</script>

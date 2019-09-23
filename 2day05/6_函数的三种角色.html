@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*
+        function f(){}
+        普通函数
+        构造函数
+        普通对象
+    */
+    function Person() {
+        this.name = name;
+        this.age = age;
+    }
+    // Person();
+    // new Person();
+    // Person.age = 100;
+    //-----------------------------------------------------------------------
+    //类数组转成数组
+    function fn() {
+        Array.from(arguments);
+        [...arguments];
+        [].slice.call(arguments, 0);
+        // arguments.__proto__ = Array.prototype;
+        console.log(arguments);
+    }
+    fn(1,2,3,4,5,6)
+</script>

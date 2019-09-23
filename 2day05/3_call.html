@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function fn() {
+        console.log(arguments)
+        console.log(this)
+        console.log('-------------------->')
+    }
+    // fn(12)
+    // var ary = [fn]
+    // ary[0]()
+
+    // fn.call(ary, 1, 2, 3, 4)
+    // fn 执行 改变fn中的this指向 把1，2，3，4 传给fn；
+    //call的第一个参数是让fn 中的this指向 这个参数
+    //第二个以后的参数传个fn 的实参
+    // call 的执行结果就是 fn的执行结果
+    //-----------------------------------------------------------------------
+    function myinstanceof(temp, classN) {
+        // temp 通过__proto__向上查找的时候
+        // 若某次的temp.__proto__ === classN.prototype  返回true
+        // 当某次的 __proto__ === null; 这是返回返回  false
+        // temp.__proto__   classN.prototype
+        let str = typeof temp;
+        if (str !== 'object' && str !== 'function') return false;
+        var left = temp.__proto__,
+            right = classN.prototype;
+        if (left === right) return true
+        while (left) {
+            if (left === right) return true
+            left = left.__proto__
+        }
+        return false
+    }
+    // myinstanceof({}, Array)
+    //---------------------------------------------------------------------
+    function myNew(classN, ...arg) {
+        let obj = new Object();
+        obj.__proto__ = classN.prototype;
+        let res = classN.call(obj, ...arg)
+        return typeof res === 'object' ? res : obj;
+    }
+    //=------------------------------------------------------------------
+    Function.prototype.mycall = function (context, ...arg) {
+        if (typeof context !== 'object' && typeof context !== 'funciton' && typeof context !== 'unll') {
+            arg.unshift(context);
+            context = window;
+        }
+        let a = Symbol();
+        context[a] = this;
+        let res = context[a](...arg);
+        delete context[a]
+        return res
+    }
+</script>

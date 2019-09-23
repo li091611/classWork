@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="namebtn">姓名</button>
+    <button id="agebtn">年龄</button>
+    <ul id="box">
+
+    </ul>
+</body>
+
+</html>
+<script>
+    var ary = [
+        { name: '小明', age: 10 },
+        { name: '小话', age: 12 },
+        { name: '小李', age: 15 },
+        { name: '小王', age: 11 },
+        { name: '小红', age: 17 },
+    ];
+    
+    function render() {
+        var str = '';
+        ary.forEach(item => {
+            let { name, age } = item;
+            str += ` 
+        <li>
+            <strong>姓名：${name}</strong>；
+            <strong>年龄：${age}</strong>
+        </li>`
+
+        })
+        box.innerHTML = str;
+    }
+    render();
+    var flag = 1;
+    namebtn.onclick = function () {
+        flag *= -1;
+        ary.sort((a, b) => {
+            return a.name.localeCompare(b.name)*flag
+        });
+        render();
+        
+    }
+    agebtn.onclick = function () {
+        flag *= -1;
+        ary.sort((a, b) => {
+            return (a.age - b.age)*flag
+        });
+        render();
+    }
+    /*
+        对象的结构赋值：
+
+    */
+
+</script>
