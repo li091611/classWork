@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*
+        匹配    test
+        捕获    exec    从字符串中获取 满足 正则的部分 字符
+
+    */
+    //正则的贪婪性，一次性会把满足正则的字符都捕获到
+    //    解决正则的贪婪性  ?
+    //捕获的懒惰性；只捕获一次，不会再捕获其他符合正则的字符
+    // 通过添加全局修饰符  g   解决；
+    //tast  和  exec方法都会更新    lastIndex属性
+    
+    var reg = /\d+/g;
+    var str = '珠峰2019zf2020';
+    // var res = reg.exec(str)
+    console.log(reg.exec(str));
+    console.log(reg.exec(str))
+    console.log(reg.exec(str))
+    console.log(reg.exec(str))
+
+    // exec 捕获的结果 第一项是大正则捕获的内容，第二项及以后都是小分组捕获到内容；
+
+    var reg = /([a-z]+)(\d+)/;
+    var str = '珠峰2019zf2020';
+    var res = reg.exec(str)
+    console.log(res)
+
+</script>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="身份证" id="inp">
+    <button id="btn">解析</button>
+    <h2 id="box"></h2>
+</body>
+
+</html>
+<script>
+    const btn = document.getElementById('btn')
+    const inp = document.getElementById('inp')
+    const box = document.getElementById('box')
+    btn.onclick = function () {
+        var str = inp.value;
+        var reg = /^\d{6}(\d{4})(\d{2})(\d{2})(\d{2})(\d)(\d|X)$/;
+        var res = reg.exec(str);
+        console.log(str)
+        if (res) {
+            box.innerHTML = `这个人的出生年月日是${res[1]}年${res[2]}月${res[3]}日；性别：${res[4]%2 ? '女':'男'}`
+        } else {
+            alert('身份证不合法')
+        }
+    }
+
+
+    Object.prototype.getType =function(){
+        //
+        // let str = Object.prototype.toString.call(this)
+        // let reg = /[a-z]+/ig;
+        // reg.test(str);
+        // let ary = reg.exec(str)[0].toLowerCase()
+        // // console.log(reg.exec(str)[0].toLowerCase())
+        // return ary 
+        let str =  Object.prototype.toString.call(this);
+        let reg = /^.{8}(\w+)/ig;
+        let ary = reg.exec(str)[1].toLowerCase();
+        
+        return ary
+    }
+    
+    
+</script>
