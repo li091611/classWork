@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //  exec
+    //返回结果若有就是个数组，没有就是null
+    var reg = /\d+?/g;//贪婪性和懒惰性
+    var str = 'zf2019zf2020'
+    console.log(str.match(reg));
+    // console.log(reg.exec(str));
+
+    RegExp.prototype.execAll = function (str) {
+        if (!this.global) {
+
+        }
+        var ary = [];
+        var item = this.exec(str);
+        while (item !== null) {
+            ary.push(item);
+            item = this.exec(str);
+        }
+        return ary
+    }
+    var str = 'u_main=fa6482c693d19d89c27911aaeddb7a4e; HLHZPVID=e10600ee-8bca-4ba8-8156-467e6f74a5ec; SUC=103120100; SYD_YY_SUTID=101; sajssdk_2015_cross_new_user=1; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2216d70e183a75e-0e802561c5e8fc-19174638-1049088-16d70e183a896%22%2C%22%24device_id%22%3A%2216d70e183a75e-0e802561c5e8fc-19174638-1049088-16d70e183a896%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E5%BC%95%E8%8D%90%E6%B5%81%E9%87%8F%22%2C%22%24latest_referrer%22%3A%22http%3A%2F%2Fbzclk.baidu.com%2Fadrc.php%3Ft%3D06KL00c00fDSMKs0UCd-0KvOI6acBmdI00000aeOwdC00000X5wJxL.THLQYIQgV5_0UWYdPW0vnj0Yr7tYgLKM0Znqm19bnWnYnHfsnjD3nW6vP0Kd5RF7PjR1rDnzwH0srR7DwRnsnR7DwH63fHmzPHc1n1Rs0ADqI1Y%22%2C%22%24latest_referrer_host%22%3A%22bzclk.baidu.com%22%2C%22%24latest_search_keyword%22%3A%22%E6%90%9C%E6%98%93%E8%B4%B7%22%7D%7D; u_passport_souyidai_com=25ebcea871cf2fac6499344a4a9f44c7; IPLOC=CN1100; SUV=1909271201384601; smidV2=20190927120134eb5b6d053ac3de5609e7736a79ecd07700a6b6e7d5dc46890'
+    
+    
+    
+    function getCookie(str) {
+        var reg = /([^ ;=]+)=([^ ;=]+)/g;
+        var res = reg.execAll(str);
+        var obj = {};
+        res.forEach(e=>{
+            obj[e[1]] = e[2];
+        })
+
+
+
+        // var res = str.match(reg);
+        // console.log(res);
+        // res.forEach(e => {
+        //     console.log(e.splice('='))
+        // });
+        // var obj = {};
+        return obj
+    }
+
+    var reg = /id\=['"](\w)+['"]/
+    var reg = />([^><]+)</
+</script>

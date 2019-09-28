@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.md{
+    width: 1200px;
+    margin: 0 auto;
+}
+.tel{
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid #cccccc;
+}
+.tel strong{
+    margin-left: 20px;
+}
+.tel b{
+    margin: 0 30px;
+    cursor: pointer;
+}
+#box{
+    position: relative;
+    width: 100%;
+}
+#box li{
+    position: relative;
+    float: left;
+    width: 220px;
+    height: 340px;
+    margin-right: 25px;
+    margin-top: 25px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+}
+#box li:nth-child(5n){
+    margin-right: 0;
+}
+#box li:hover{
+    border-color: salmon;
+}
+img{
+    width: 100%;
+}
+#box li div{
+    text-align: center;
+}
+#box>li>div:nth-child(3){
+    margin-top: 20px;
+    color: red;
+    font-size: 16px;
+
+}
+.clas{
+    font-size: 18px;
+}
+section{
+    position: absolute;
+    bottom: 0;
+    height: 30px;
+    line-height: 30px;
+    display: flex;
+    width: 220px;
+    text-align: center;
+}
+section span{
+    flex: 1;
+    border: 1px solid #ccc;
+    border-bottom: none;
+}

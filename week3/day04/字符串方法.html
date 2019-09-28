@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //match
+    var reg = /\d+?/g;
+    var str = 'zf2019zf2020';
+    console.log(str.match(reg));
+
+    // function getParam(){
+    //     var reg = /([^=?&]+)=([^=?&]+)/g;
+    //     var ary = url.match(reg);
+    //     var obj = {};
+    //     ary.forEach(e => {
+    //         var a = e.split('=');
+    //         obj[a[0]] = a[1]
+    //     });
+    //     return obj
+    // }
+
+    // split ()
+    
+    var str = 'sdasd&2e3h23ghg23+h+g2=h323'
+    str.match(/\d+/g);
+    var reg = /\D/;
+    console.log(str.split(/\D+/));
+
+    var url = 'http://www.zhufengpeixun.cn/?lx=1&from=wx&b=12&c=13';
+    function getParam(url){
+        var reg = /([^=?&]+)=([^=?&]+)/g;
+        let obj = {};
+        url.replace(reg,function(a,b,c){
+            obj[b] = c
+        })
+        return obj
+    }
+</script>
