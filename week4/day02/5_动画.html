@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            user-select: none;
+            text-align: center;
+            position: relative;
+            border: 1px solid salmon;
+            left: 0;
+            transition: left 2s cubic-bezier(1,-0.51, 0.03, 2.13);
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">点击我</button>
+    <div id="box">珠峰培训</div>
+</body>
+
+</html>
+<script src="./jq.js"></script>
+<script>
+    // getComputedStyle(元素)
+    // IE低版本使用     元素.currentStyle
+    // 监听窗口大小的改变 window.onresize
+
+    // let boxW2 = getComputedStyle(box).width;
+    // let boxW22 = $('#box').width()
+    // console.log(boxW22,boxW2)
+
+    let l = 0;
+    let box = document.getElementById('box');
+    let btn = document.getElementById('btn');
+    let w = document.documentElement.clientWidth || document.body.clientWidth;
+    let boxW = box.offsetWidth;
+    let maxL = w - boxW;
+    btn.onclick = function (){
+        box.style.left = maxL+'px'
+    }
+    // let timer = setInterval(() => {
+    //     l++;
+    //     if (l >= maxL) {
+    //         l = maxL;
+    //         clearInterval(timer)
+    //     }
+    //     box.style.left = l + 'px';
+    // }, 10);
+    // window.onresize = function () {
+    //     console.log('666')
+    // }
+
+
+    function fn() {
+        l += 5;
+        if (l >= maxL) {
+            l = maxL
+        } else {
+            setTimeout(() => {
+                fn()
+            }, 10)
+            // requestAnimationFrame(fn)
+        }
+        box.style.left = l+'px'
+    }
+    // fn()
+
+    //递归
+    // function fn() {
+    //     setTimeout(() => {
+    //         fn();
+    //     }, 1000)
+    // }
+</script>
