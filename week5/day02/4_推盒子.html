@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            background: coral;
+        }
+    </style>
+</head>
+
+<body>
+    <di id="box"></di>
+</body>
+
+</html>
+<script>
+    let box = document.getElementById('box');
+    let l = 0, t = 0;
+    // window.onkeydown = function (e) {
+    //     // console.log(e.keyCode)
+    //     switch (e.keyCode) {
+    //         case 38:
+    //             t -= 10
+    //             break;
+    //         case 40:
+    //             t += 10
+    //             break;
+    //         case 37:
+    //             l -= 10
+    //             break;
+    //         case 39:
+    //             l += 10
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    //     box.style.left = l + 'px';
+    //     box.style.top = t + 'px';
+    // }
+    box.onclick = function(e){
+        box.style.transition = 'none';
+        box.style.left = '100px';
+        var l = box.clientLeft;
+        box.style.transition = 'left 1s';
+        box.style.left = '200px';
+    }
+
+</script>

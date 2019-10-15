@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            /* margin: 50px auto; */
+            background: yellowgreen;
+            position: absolute;
+            display: none;
+            /* cursor:default; */
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://www.baidu.com" id="a" target="_blank">百度</a>
+    <div id="box"></div>
+</body>
+
+</html>
+<script>
+    //  事件执行 先执行对应事件 在执行默认行为 ；滚动事件是 顺序相反
+    var a = document.getElementById('a')
+    var box = document.getElementById('box')
+    // a.getAttribute
+
+    a.onclick = function (e) {
+        e = e || window.event       //事件对象
+        // e.preventDefault()   //阻止默认行为  
+        var tar = e.target || e.srcElement;     //事件源
+        console.log(a.getAttribute('href'))
+        // alert(666)
+        return false            //阻止默认行为
+    }
+    window.oncontextmenu = function (e) {
+        e.preventDefault();
+        // alert(666)
+        
+        box.style.display = 'block';
+        box.style.top = e.pageY + 'px'
+        box.style.left = e.pageX + 'px'
+        console.log(e.pageX, e.pageY)
+    }
+    window.onclick = function(){
+        box.style.display = 'none';
+    }
+</script>

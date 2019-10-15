@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            margin: 80 auto;
+            background: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" contenteditable="true"></div>
+    <button id="btn">按钮</button>
+    <input type="text" name="" id="inp">
+</body>
+
+</html>
+<script src="../day01/jquery-3.3.1.js"></script>
+<script>
+    /*
+        鼠标事件
+        onclick             鼠标单击
+        oncontextmenu       鼠标右键
+        ondblclick          鼠标双击
+        onmouseenter        鼠标移入
+        onmouseleave        鼠标移除
+        onmouseover         鼠标滑过
+        onmouseout          鼠标滑出
+        onmousewheel        鼠标滚轮
+        onmousedown         鼠标摁下
+        onmouseup           鼠标抬起
+        
+        preventDefault      阻止默认事件
+    */
+    var box = document.getElementById('box')
+    var btn = document.getElementById('btn')
+    var inp = document.getElementById('inp')
+    box.ondblclick = function () {
+        console.log('双击')
+    }
+    /*
+        键盘事件
+        onkeydown           键盘按下
+        onkeyuo             键盘抬起
+        onkeypress          按下抬起
+        window  document.body   input   textarea
+    */
+    btn.onkeydown = function (e) {
+        console.log(55)
+        e.preventDefault()
+    }
+    /*
+        input
+        onfocue         获取焦点
+        onblur          失去焦点
+        oninput         内容改变就触发
+        onchange        内容发生改变    并且失去焦点的时候
+    */
+    inp.onfocus = function () {
+        console.log('获取焦点')
+    }
+    inp.onblur = function () {
+        console.log('失去焦点')
+    }
+    inp.onchange = function () {
+        console.log('change')
+    }
+    inp.oninput = function () {
+        console.log(66)
+    }
+    /*
+        系统事件
+        window.onscroll     页面滚动，只能能出现滚动条的事件都能绑定scroll事件
+        window.onresize     窗口发生改变的时候
+        window.onload       页面资源加载完成之后触发
+
+    */
+    
+</script>
