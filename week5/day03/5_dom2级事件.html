@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            box-sizing: border-box;
+        }
+
+        #outer {
+            width: 500px;
+            height: 500px;
+            background: red;
+            margin: 50px auto;
+            padding: 50px;
+        }
+
+        #center {
+            width: 400px;
+            height: 400px;
+            background: blue;
+            padding: 50px;
+        }
+
+        #inner {
+            width: 300px;
+            height: 300px;
+            background: salmon;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outer">
+        <div id="center">
+            <div id="inner">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="../day01/jquery-3.3.1.js"></script>
+<script>
+    let outer = document.getElementById('outer')
+    let center = document.getElementById('center')
+    let inner = document.getElementById('inner')
+    // //dom 0级事件绑定
+    // outer.onclick = function () {
+    //     console.log(55)
+    // }
+    // outer.onclick = function () {
+    //     console.log(66)
+    // }
+    // // JQ 是利用 DOM 的 二级事件绑定
+    // $('#outer').on('click',function(){
+    //     console.log(11)
+    // })
+    // $('#outer').on('click',function(){
+    //     console.log(22)
+    // })
+    // false 代表对应的函数在冒泡阶段触发；true代表对应的函数在捕获的阶段触发     一般默认都是false
+    // outer.addEventListener('click',function () {
+    //     console.log(111)
+    // },false) 
+    // outer.addEventListener('click',function () {
+    //     console.log(111111)
+    // },false) 
+    // center.addEventListener('click',function () {
+    //     console.log(222)
+    // },false)
+    // inner.addEventListener('click',function () {
+    //     console.log(333)
+    // },false)
+    function f() {
+        console.log(666)
+    }
+    inner.addEventListener('click',f, false)
+    inner.removeEventListener('click', f, false)
+    window.addEventListener('load',function () {
+        console.log('load')
+    })
+    window.addEventListener('DOMContentLoaded',function () {
+        console.log('ready')
+    })
+
+    /*
+        DOM的二级事件绑定：元素.addEvenListener('事件类型'，回调函数，冒泡或者捕获阶段)
+                              attachEvent('on事件类型'，回调函数)  detachEvent('on事件类型'，回调函数)
+        2级事件的同一个元素的用一个事件 可以绑定多个回调函数
+
+    */
+    Element.prototype.one = function(type,callback){
+        function cb(e) {
+           callback.call(this,e);
+           this.removeEventListener(type,cb,false)
+        }
+        this.addEventListener(type,cb,false)
+    }
+    inner.one('click', function (e) {
+        console.log('myone')
+    })
+</script>

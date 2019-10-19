@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            cursor: move;
+            background: yellowgreen;
+            position: absolute;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+
+</html>
+<script>
+    let box = document.getElementById('box');
+    // box.onmousedown = function (e) {
+    //     // box.style.left = e.getaX
+    //     console.log(e.gat)
+    // }
+    function offset(ele) {
+        let l = ele.offsetLeft,
+            t = ele.offsetTop;
+        let temp = ele.offsetParent;
+        while (temp) {
+            l += temp.clientLeft + temp.offsetLeft;
+            t += temp.clientTop + temp.offsetTop;
+            temp = temp.offsetParent;
+        }
+        return {
+            l, t
+        }
+    }
+    function move(e) {
+
+        this.style.left = e.pageX - this.l + 'px'
+        this.style.top = e.pageY - this.t + 'px'
+    }
+
+    box.addEventListener('mousedown', function (e) {
+        let o = offset(this)
+        this.l = e.pageX - o.l
+        this.t = e.pageY - o.t
+        this.fn = move.bind(this)
+        document.addEventListener('mousemove',this.fn, false)
+    }, false)
+
+    box.addEventListener('mouseup', function (e) {
+        document.removeEventListener('mousemove',this.fn, false)
+    }, false)
+</script>

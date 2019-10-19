@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="box">
+        <li>
+            <span>一级菜单1</span>
+            <ul>
+                <li>
+                    <span>二级菜单1</span>
+                    <ul>
+                        <li>
+                            <span>三级菜单1</span>
+                        </li>
+                        <li>
+                            <span>三级菜单2</span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span>二级菜单2</span>
+                    <ul>
+                        <li>
+                            <span>三级菜单3</span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span>二级菜单3</span>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span>一级菜单2</span>
+            <ul>
+                <li>
+                    <span>二级菜单4</span>
+                    <ul>
+                        <li>
+                            <span>三级菜单4</span>
+                        </li>
+                        <li>
+                            <span>三级菜单5</span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span>二级菜单5</span>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span>一级菜单3</span>
+            <ul>
+                <li>
+                    <span>二级菜单6</span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</body>
+
+</html>
+<script src="../day01/jquery-3.3.1.js"></script>
+<script src="">
+    let box = document.getElementById('box');
+    box.onclick = function (e) {
+        e = e || window.Element
+        let tar = e.target || e.srcElement
+        // console.log(tar.tagName.toLocaleLowerCase() === 'span')
+        if(tar.tagName.toLocaleLowerCase() === 'span'){
+            let nexE = tar.nextElementSibling
+            if(nexE){
+                nexE.className = 'hide'
+            }
+        }
+    }
+</script>
+<script>
+    $('#box').on('click',function(e){
+        let tar = e.target;
+        let $tar = $(tar)
+        if(tar.tagName.toLocaleLowerCase() === 'span'){
+            let $nexE = $tar.siblings('ul');
+            $nexE.toggleClass('hide');
+            if($nexE.hasClass('hide')){
+                $nexE.find('ul').addClass('hide')
+            }
+        }
+    })
+</script>

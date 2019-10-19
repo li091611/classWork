@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            border-radius: 50%;
+            background: salmon;
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: move;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        Hello
+    </div>
+</body>
+
+</html>
+<script src="../day01/jquery-3.3.1.js"></script>
+<script>
+    /*
+        鼠标按下 ，记录盒子的的初始位置 和鼠标的初始位置
+        鼠标移动    盒子跟着移动 鼠标当前的位置 — 鼠标初始位置 + 盒子的初始位置
+        鼠标抬起    盒子停止跟随
+
+        setCapture 火狐防止鼠标丢失
+    */
+    let box = document.getElementById('box');
+    
+    // function move(e) {
+    //     this.style.left = e.pageX - this.startPx + this.startX + 'px';
+    //     this.style.top = e.pageY - this.startPy + this.startY + 'px';
+    // }
+    // box.onmousedown = function (e) {
+    //     this.startX = $(this).offset().left;
+    //     this.startY = $(this).offset().top;
+    //     this.startPx = e.pageX;
+    //     this.startPy = e.pageY;
+
+    //     document.onmousemove = move.bind(this);
+    //     document.onmouseup = function () {
+    //         document.onmousemove = null;
+    //         document.onmouseup = null;
+    //     }
+    // }
+
+    //二级函数绑定
+    function start(e){
+        this.startX = $(this).offset().left;
+        this.startY = $(this).offset().top;
+        this.startPx = e.pageX;
+        this.startPy = e.pageY;
+        this.MOVE = move.bind(this);
+        this.END = end.bind(this);
+        document.addEventListener('mousemove',this.MOVE,false);
+        document.addEventListener('mouseup',this.END,false)
+    }
+    function move(e){
+        this.style.left = e.pageX - this.startPx + this.startX + 'px';
+        this.style.top = e.pageY - this.startPy + this.startY + 'px';
+    }
+    function end(e){
+        // 鼠标抬起执行的函数
+        console.log(666)
+        document.removeEventListener('mousemove',this.MOVE,false);
+        document.removeEventListener('mouseup',this.END,false)
+    }
+    box.addEventListener('mousedown',start,false);
+</script>

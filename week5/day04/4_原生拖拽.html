@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #lit_box{
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            border: 1px salmon solid;
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: move;
+            user-select: none;
+        }
+        #big_box{
+            width: 400px;
+            height: 400px;
+            line-height: 100px;
+            text-align: center;
+            border: 1px salmon solid;
+            position: absolute;
+            left: 300px;
+            top: 0;
+            cursor: move;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="lit_box" draggable="true"></div>
+    <div id="big_box"></div>
+    
+</body>
+</html>
+<script>
+    let lit_box = document.getElementById('lit_box')
+    let big_box = document.getElementById('big_box')
+    lit_box.ondragstart = function (e){
+        console.log('start',e)
+    }
+    // lit_box.ondrag = function (e){
+    //     console.log('rag')
+    // }
+    lit_box.ondragend = function (e){
+        console.log('end',e)
+    }
+    big_box.ondragenter = function (){
+        console.log('拖进来')
+    }
+    big_box.ondragover = function (e){
+        console.log('拖上来')
+        e.preventDefault()
+    }
+    big_box.ondragleave = function (){
+        console.log('离开')
+    }
+    big_box.ondrop = function (e) { 
+        e.preventDefault()
+        // console.log(e.dataTransfer.files[0])
+        let file = e.dataTransfer.files[0]
+        // let url = URL.createObjectURL(file)//产出对应文件的本地地址
+        // console.log(url)
+        // big_box.innerHTML = `<img src="${url}">`
+
+        let _this = this
+
+        /* let res = new FileReader();
+        res.readAsDataURL(file)
+         res.onload = function (e) {
+             console.log(e)
+             _this.innerHTML = `<img src="">`
+         } */
+    }
+</script>

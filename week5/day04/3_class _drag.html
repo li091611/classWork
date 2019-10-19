@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: move;
+            user-select: none;
+        }
+
+        #box {
+            background: cornflowerblue;
+        }
+
+        #box2 {
+            background: yellowgreen;
+            left: 100px;
+        }
+
+        #box3 {
+            background: chocolate;
+            left: 200px;
+        }
+        #box4 {
+            background: fuchsia;
+            left: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        Hello
+    </div>
+    <div id="box2">
+        Hello
+    </div>
+    <div id="box3">
+        Hello
+    </div>
+    <div id="box4">
+        Hello
+    </div>
+</body>
+
+</html>
+<script>
+    class Drag {
+        constructor(id, n) {
+            this.n = n;
+            this.count = 0
+            this.box = document.getElementById(id);
+            this.START = this.start.bind(this);
+            this.MOVE = this.move.bind(this);
+            this.END = this.end.bind(this); 
+            this.box.addEventListener('mousedown',this.START,false);
+        }
+        offset(ele) {
+            let l = ele.offsetLeft,
+                t = ele.offsetTop;
+            let temp = ele.offsetParent;
+            while (temp) {
+                l += temp.offsetLeft + temp.clientLeft;
+                t += temp.offsetTop + temp.clientTop;
+                temp = temp.offsetParent;
+            }
+            return {
+                l,
+                t
+            }
+        }
+        start(e) {
+            // this 是当前的实例；
+            this.startX = this.offset(this.box).l;
+            this.startY = this.offset(this.box).t;
+            this.startPx = e.pageX;
+            this.startPy = e.pageY;
+            document.addEventListener('mousemove', this.MOVE, false);
+            document.addEventListener('mouseup', this.END, false);
+            addZIndex(this.box)
+        }
+        move(e) {
+            // this 是当前的实例
+            this.box.style.left = e.pageX - this.startPx + this.startX + 'px';
+            this.box.style.top = e.pageY - this.startPy + this.startY + 'px';
+        }
+        end(e) {
+            // this 是当前的实例
+            // 鼠标抬起执行的函数
+            document.removeEventListener('mousemove', this.MOVE, false);
+            document.removeEventListener('mouseup', this.END, false)
+
+            if(this.n !== undefined ){
+                this.count ++;
+                if(this.count >= this.n) {
+                    this.clear()
+                }
+            }
+        }
+        clear(){
+            this.box.removeEventListener('mousedown',this.START,false);
+        }
+    }
+    let n = 0;
+    function addZIndex(ele){
+        ele.style.zIndex = n++
+    }
+
+
+
+
+    new Drag('box')
+    new Drag('box2')
+    new Drag('box3')
+    new Drag('box4')
+</script>
