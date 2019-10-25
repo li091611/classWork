@@ -1,0 +1,69 @@
+/*
+        less    1,嵌套写法
+                2,可以书写变量
+                3,混合
+                4,函数
+*/
+.w {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#box {
+  width: 100px;
+  height: 100px;
+  margin: 150px auto;
+  position: relative;
+  perspective: 2000px;
+}
+@keyframes move {
+  0% {
+    transform: rotateX(0) rotateY(0);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+#box ul {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: move 2s infinite linear;
+  transform-origin: 50px 50px 50px;
+}
+#box ul li {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 100px;
+  background: rgba(220, 238, 59, 0.5);
+  border: 1px salmon solid;
+}
+#box ul li:nth-child(2) {
+  transform: translateY(-100%) rotateX(-90deg);
+  transform-origin: bottom;
+}
+#box ul li:nth-child(3) {
+  transform: translateX(-100%) rotateY(90deg);
+  transform-origin: right;
+}
+#box ul li:nth-child(4) {
+  transform: translateY(100%) rotateX(90deg);
+  transform-origin: top;
+}
+#box ul li:nth-child(5) {
+  transform: translateX(100%) rotateY(-90deg);
+  transform-origin: left;
+}
+#box ul li:nth-child(6) {
+  transform: translateZ(100px);
+}

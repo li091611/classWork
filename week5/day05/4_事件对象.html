@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background: yellowgreen;
+        }
+
+        /* *{
+            margin: 0 ;
+            padding: 0 ;
+        } */
+    </style>
+</head>
+
+<body>
+    <!-- <input type="text"  id="inp"> -->
+    <div id="box">
+
+    </div>
+</body>
+
+</html>
+<script>
+    let inp = document.getElementById('inp');
+    let box = document.getElementById('box');
+    box.onclick = function (e) {
+        e = e || window.event;  //事件对象
+        let tar = e.target || e.scrElement;   //事件源
+        console.log(e)
+    }
+    let x = y = 0;
+    window.onkeydown = function (e) {
+        let n = e.keyCode;
+        switch (n) {
+            case 37://左
+                x--;
+                break;
+            case 38://上
+                y--;
+                break;
+            case 39:
+                x+=400;
+                break;
+            case 40:
+                y++;
+                break;
+            default:
+                break;
+        }
+        box.style.transform = `translate(${x}px,${y}px)`
+    }
+    // inp.onkeydown = function (e) {
+    //     // e.keyCode   键盘码
+    //     console.log(e)
+    // }
+</script>
