@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.lt {
+  float: left;
+}
+.rt {
+  float: right;
+}
+header {
+  background: #fe350e;
+  padding: 3vw;
+}
+header .logo_box {
+  color: #fff;
+  height: 10vw;
+  line-height: 10vw;
+  overflow: hidden;
+  position: relative;
+}
+header .logo_box .logo {
+  font-size: 66px;
+  height: 10vw;
+  line-height: 10vw;
+  display: inline-block;
+}
+header .logo_box .tab {
+  width: 30vw;
+  height: 7vw;
+  line-height: 7vw;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  transform: translateX(-50%) translateY(-50%);
+  font-size: 14px;
+  background: rgba(231, 124, 124, 0.5);
+  border-radius: 7vw;
+}
+header .logo_box .tab .lit {
+  color: #333;
+  font-size: 14px;
+}
+header .logo_box .tool_box {
+  font-size: 18px;
+  text-align: center;
+}
+header .logo_box .tool_box .icon_user {
+  margin: 0 5vw;
+}
+header nav ul {
+  display: flex;
+}
+header nav ul li {
+  margin: 1.3vw;
+  text-align: center;
+  flex: 1;
+}
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+.banner {
+  padding: 3vw;
+}
+.banner .swiper-slide {
+  overflow: hidden;
+  height: 60vw;
+}
+.banner .swiper-slide img {
+  height: 100%;
+}
+.banner .swiper-slide p {
+  margin-left: 2vw;
+  color: #fff;
+  height: 10vw;
+  line-height: 10vw;
+  position: absolute;
+  bottom: 0vw;
+}
+.banner .swiper-pagination {
+  text-align: end;
+  color: #FFF;
+  box-sizing: border-box;
+  padding-right: 5vw;
+}
+.banner .swiper-pagination span:nth-child(1) {
+  font-size: 20px;
+}
+.listBox {
+  padding: 3vw;
+}
+.listBox .list {
+  border-bottom: 1px solid #cfc9c9;
+  display: flex;
+  padding-bottom: 3vw;
+  position: relative;
+  min-height: 20vw;
+}
+.listBox .list .textBox {
+  flex: 1;
+}
+.listBox .list .textBox .commentBox {
+  position: absolute;
+  bottom: 3vw;
+  font-size: 14px;
+  color: #b1aeae;
+}
+.listBox .list .imgBox {
+  width: 30vw;
+  height: 30vw;
+}
+.listBox .list .imgBox img {
+  height: 100%;
+  width: 100%;
+}

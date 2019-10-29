@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.lt{
+    float: left;
+}
+.rt{
+    float: right;
+}
+header{
+    background:#fe350e;
+    padding: 3vw;
+    .logo_box{
+        color: #fff;
+        height: 10vw;
+        line-height: 10vw;
+        overflow: hidden;
+        position: relative;
+        .logo{
+            font-size: 66px;
+            height: 10vw;
+            line-height: 10vw;
+            display: inline-block;
+        }
+        .tab{
+            // width: 100%;
+            width: 30vw;
+            height: 7vw;
+            line-height: 7vw;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            text-align: center;
+            transform: translateX(-50%)translateY(-50%);
+            font-size: 14px;
+            background: rgba(231, 124, 124, 0.5);
+            border-radius: 7vw;
+            .lit{
+                color: #333;
+                font-size: 14px;
+            }
+            
+        }
+        .tool_box{
+            font-size: 18px;
+            text-align: center;
+            .icon_user{
+                margin: 0 5vw;
+            }
+        }
+    }
+    nav{
+        ul{
+            display: flex;
+            li{
+                a{
+                    color: #fff;
+                    text-decoration:none;
+                }
+                margin: 1.3vw;
+                text-align: center;
+                flex: 1;
+            
+        }
+       
+    }
+}
+}
+.banner{
+    padding: 3vw;
+    .swiper-slide{
+        overflow: hidden;
+        height: 60vw;
+        img{
+            height:  100%;
+        }
+        p{
+            margin-left: 2vw;
+            color: #fff;
+            height: 10vw;
+            line-height: 10vw;
+            position: absolute;
+            bottom: 0vw;
+        }
+    }
+    .swiper-pagination{
+        text-align: end;
+        color: #FFF;
+        box-sizing: border-box;
+        padding-right: 5vw;
+        span:nth-child(1){
+            font-size: 20px;
+        }
+    }
+}
+.listBox{
+    padding: 3vw;
+    .list{
+        border-bottom: 1px solid rgb(207, 201, 201);
+        display: flex;
+        padding-bottom: 3vw;
+        position: relative;
+        min-height: 20vw;
+        .textBox{
+            flex: 1;
+            .commentBox{
+                position: absolute;
+                bottom: 3vw;
+                font-size: 14px;
+                color: #b1aeae;
+            }
+        }
+        .imgBox{
+            width: 30vw;
+            height: 30vw;
+            img{
+                height:  100%;
+                width: 100%;
+            }
+        }
+    }
+}
+

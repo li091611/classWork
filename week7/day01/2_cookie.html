@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+    种植 cookie
+    cookie 是前端用来保存某些数据用的   前后端都能操作
+    一般用来储存用户数据 
+    H5新增的两个前端存数据的API 大小在5m 左右
+
+    localStorage
+    getItem（属性名） setItem（属性名，属性值） removeItem（属性名）
+    clear（）
+
+
+    sessionStorage
+    getItem（属性名） setItem（属性名，属性值） removeItem（属性名）
+    clear（）
+    
+
+    getCookie(属性值)
+    setCookie（属性名。属性值）//把日期设置成过期日期
+    removeCoolie（属性名）
+    */
+    var Cookie = {
+    get: function (k) {
+        return ((new RegExp(["(?:; )?", k, "=([^;]*);?"].join(""))).test(document.cookie) && RegExp["$1"]) || "";
+    },
+    set: function (k, v, e, d) {
+        var date=new Date(); 
+        var expiresDays=e; 
+        date.setTime(date.getTime()+expiresDays*24*3600*1000); 
+        document.cookie=k+"="+v+"; expires="+ (e != '' ? date.toGMTString(): "GMT_String")+";path=/;domain="+ (d||'');
+    },
+    del: function (k) {
+        var date=new Date(); 
+        date.setTime(date.getTime()-10000); 
+        document.cookie=k+"=; expires="+date.toGMTString(); 
+    }
+};
+
+
+    function getCookie(key){
+        let str = document.cookie;
+        str +='; '
+        let reg = new RegExp(`\\b${key}=([^; ]+); `)
+        // console.log(str.match(reg)[1])
+        return str.match(reg) ? str.match(reg)[1] : null;
+    }
+    function setCookie(key,value,date){
+        if(date){
+            document.cookie = `${key} = ${value}; expires = ${new Date(date)}`
+        }else{
+            document.cookie = `${key} = ${value}; `
+        } 
+    }
+    function removeCoolie(key,domain){
+        if(domain){
+            document.cookie = `${key} = null; domain${domain}; expires = ${new Date(null)}`
+        }else{
+            document.cookie = `${key} = null; expires = ${new Date(null)}`
+        }    
+    }
+</script>

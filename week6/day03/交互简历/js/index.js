@@ -40,101 +40,114 @@ function loadBox() {
 loadBox();
 function phoneBoxFn() {
     let phoneBox = document.querySelector('.phoneBox');
-    let circle = document.querySelector('.circle');
-    let tineBOx = document.querySelector('.phoneBox header h3');
+    let circle = document.querySelector('.phoneBox .circle');
+    let timeBox = document.querySelector('.phoneBox header h3');
     let footer = document.querySelector('.phoneBox footer');
     let overBox = document.querySelector('.phoneBox .overBox');
-    let overBtn = document.querySelector('.phoneBox .overBtn');
-    let bell = document.querySelector('#bell');
-    let timeBox = document.querySelector('.timeBox');
-
-    // bell.play();
+    let overBtn = overBox.querySelector('.overBtn');
+    let clearFn = null; // 为了清除时间定时器
     circle.addEventListener('touchend', function () {
-        // bell.pause();
-        tineBOx.classList.remove('hide');//显示时间
+        timeBox.classList.remove('hide'); // 显示时间
         footer.classList.add('hide');
-        overBox.classList.remove('bot')
-        bell.pause();
-        say.play()
-        changeTime()
-    }, false)
+        overBox.classList.remove('bot');
+        bell.pause();// 点击接听键 让铃声停止  声音播放；
+        say.play();
+        clearFn = changeTime();
+    }, false); //{passive:true,capture:true} passive true; capture 
     overBtn.ontouchend = function () {
-        phoneBox.style.transform = 'translateY(110%)'
-        // phoneBox.addEventListener('transitionend',function(e){
-        //     chatBoxFn()
-        // },false)
-        chatBoxFn();
-        // let clearFn = changeTime();
-        // clearFn();
-        changeTime()()
+        // 点击挂机键
+        phoneBox.style.transform = 'translateY(110%)';
+        chatBoxFn(); //
+        say.pause();
+        clearFn();
         bgm.play();
+        //
+        
+        // phoneBox.addEventListener('transitionend',function(e){
+        //     console.log(e)
+        //     chatBoxFn();// 上一屏幕完全消失之后
+        // },false)
     }
-    function changeTime() {
-        let timer = setInterval(() => {
+
+    function changeTime(){
+        // 重置时间
+        let timer = setInterval(()=>{
+            // say.currentTime 当前播放的时间
             let t = parseInt(say.currentTime);
-            timeBox.innerHTML = `00:${t < 10 ? '0' + t : t}`
-            if (say.ended == 'true') {
-                clearInterval(timer)
-                bgm.play()
+            timeBox.innerHTML = `00:${t < 10 ? '0'+t : t}`;
+            if(say.ended){
+                clearInterval(timer);
+                // 说完；
+                phoneBox.style.transform = 'translateY(110%)';
+                chatBoxFn(); 
+                bgm.play();
             }
-        }, 1000);
-    }
-    return function () {
-        clearInterval(timer)
+        },1000)
+        return function(){
+            clearTimeout(timer)
+        };
     }
 }
+
 function chatBoxFn() {
-    let ul = document.querySelector('ul')
-    let olis = document.querySelectorAll('.chatBox li');
-    let keyboard = document.querySelector('.keyboard');
+    let oLis = document.querySelectorAll('.chatBox ul li');
+    let keyboard = document.querySelector('.chatBox .keyboard');
     let p = keyboard.querySelector('p');
     let chatBtn = keyboard.querySelector('.chatBtn');
+    let chatMsgBox = document.querySelector('.chatBox .chatMsgBox');
     let timer = null;
-    let n = 0;
+    let n = 0; // 记录显示的条数 
     timer = setInterval(() => {
-        olis[n].classList.remove('opa')
+        oLis[n].classList.remove('opa');
         n++;
-        if (n === 3) {
-            clearInterval(timer)
+        if (n == 3) {
+            clearInterval(timer); // 清除定时器
             setTimeout(() => {
-                keyboard.classList.remove('bot')
-                setTimeout(() => {
-                    input()
-                }, 1600);
-            }, 1500);
+                keyboard.classList.remove('bot');
+            }, 1000);
+            setTimeout(() => {
+                input();
+            }, 1400);
         }
-    }, 2000);
-    function input() {
-        let str = '我们现在使用的是VUE和REACT';
-        let n = 0;
-        let timer = null
+    }, 1000)
 
+    function input() {
+        var str = '我们现在使用的是VUE和REACT';
+        let n = 0;
+        let timer = null;
         timer = setInterval(() => {
             p.innerHTML += str[n];
             n++;
             if (n >= str.length) {
-                clearInterval(timer)
+                clearInterval(timer);
+                // 字输入完成之后
+                chatBtn.classList.remove('hide');
             }
-        }, 20);
+        }, 100)
+
     }
     chatBtn.ontouchend = function () {
-        clearInterval(timer)
-        p.innerHTML = '';
-        keyboard.classList.add('bot');
-        olis[n].classList.remove('opa');
+        p.innerHTML = ''; // 清空输入框
+        keyboard.classList.add('bot'); // 让键盘下去
+        oLis[n].classList.remove('opa'); //第四条直接出现
         n++;
         timer = setInterval(() => {
-            olis[n].classList.remove('opa')
+            oLis[n].classList.remove('opa');
             move();
             n++;
-            if (n === olis.length) {
-                clearInterval(timer)
+            if (n === oLis.length) {
+                // 所有的对话都已经出现完成
+                clearInterval(timer);
             }
-        }, 1500);
+        }, 1000)
     }
-    let t = 0
+    let t = 0; //记录向上移动的高度
     function move() {
-        t += olis[n].clientHeight
-        ul.style.transform = `translateY(-${t}px)`
+        //负责让整个盒子向上移动；每次移动出现的盒子的高度
+        // 移动ul 
+        let h = oLis[n].clientHeight;
+        t += h;
+        chatMsgBox.style.transform = `translateY(-${t}px)`
     }
+
 }

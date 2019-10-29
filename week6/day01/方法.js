@@ -48,6 +48,7 @@ function getParam(url) {
         let a = item.split('=');
         obj[a[0]] = a[1]
     })
+    obj.hash = str.split('#')[1];
     return obj
 }
 function getParam(url) {
@@ -56,6 +57,7 @@ function getParam(url) {
     url.replace(reg, function (a, b, c) {
         obj[b] = c
     })
+    obj.hash = str.split('#')[1];
     return obj;
 }
 function getParam(url) {
@@ -66,8 +68,12 @@ function getParam(url) {
         let a = item.split('=');
         obj[a[0]] = a[1]
     })
+    obj.hash = str.split('#')[1];
     return obj;
 }
+// 一屏幕的宽度；
+let w = document.documentElement.clientWidth || document.body.clientWidth;
+
 function offset(ele) {
     let l = ele.offsetLeft,
         t = ele.offsetTop;
@@ -100,6 +106,8 @@ function formateMoney(str) {
 while (arr.some(item => Array.isArray(item))) {
     arr = [].concat(...arr)
 }
+
+arr.flat(Infinity)
 
 JSON.stringify(arr).str.replace(/\[|\]+/g, '')
 
