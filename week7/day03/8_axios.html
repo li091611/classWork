@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./axios.js"></script>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script src="">
+    axios.get('./data.json', { params: { a: 666, b: 777 } }).then(function (data) {
+        console.log(data)
+    }, function (err) {
+        console.log(err)
+    })
+    axios.post('./data3.json', {
+        a: 123,
+        b: 234
+    }).then((data) => {
+        console.log(data)
+    }, (err) => {
+        console.log(err)
+    })
+    axios({
+        method: 'get',
+        url: './data2.json',
+        /* params:{
+            // params 属性是为get准备的
+            a:12,
+            b:13
+        } */
+        /* data:{
+            // data属性是为post准备的
+            q:12,
+            b:23
+        } */
+    }).then((data) => {
+        console.log(data);
+    }, (err) => {
+        consolelog(err);
+    })
+</script>
+<script>
+    // 跨域  ： 协议 域名 端口 只要有一个不一样就是跨域
+    // 同源策略：浏览器的安全机制；只存在浏览器
+    axios.defaults.baseURL = 'http://127.0.0.1:5500/week7/day03';
+    axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+    axios.defaults.transformRequest = function (data = {}) {
+        // 所有请求在发送出去的时候，都会走走该函数
+        console.log(data)
+        let str = ''
+        for (let k in data) {
+            str += `&${k}=${data[k]}`
+        }
+        return str.slice(1)
+    }
+    // axios.post('/data.json', {
+    //     "userid": "zhangsan",
+    //     "name": "张三",
+    //     "orderInDepts": "{1:10, 2:20}",
+    //     "department": [1, 2],
+    //     "position": "产品经理",
+    //     "mobile": "1xxxxxxxxxx",
+    //     "tel": "xxxx-xxxxxxxx",
+    //     "workPlace": "",
+    //     "remark": "",
+    //     "email": "test@xxx.com",
+    //     "orgEmail": "test@xxx.com",
+    //     "jobnumber": "xxx",
+    //     "isHide": false,
+    //     "isSenior": false,
+    //     "extattr": {
+    //         "爱好": "旅游",
+    //         "年龄": "24"
+    //     }
+    // }).then((data) => {
+    //     console.log(data)
+    // }).catch((err) => {
+    //     console.log(err)
+    // })
+    // 添加请求拦截器
+    
+    axios.interceptors.request.use(function (config) {
+        // 在发送请求之前做些什么
+        console.log(config)
+        return config;
+    }, function (error) {
+        // 对请求错误做些什么
+        return Promise.reject(error);
+    });
+
+    // 添加响应拦截器
+    axios.interceptors.response.use(function (response) {
+        // 对响应数据做点什么
+        return response;
+    }, function (error) {
+        // 对响应错误做点什么
+        return Promise.reject(error);
+    });
+
+
+    /* 
+    axios.get('url',{params:{参数}}).then()
+     */
+</script>

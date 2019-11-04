@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="op">打开</button>
+    <button id="send">发送</button>
+</body>
+
+</html>
+<script>
+    /* 
+    同源策略   浏览器的安全机制 协议 域名 端口 三种保持一致 
+    线上：
+    josnp
+    cors
+    ngix 反向代理
+
+    
+    开发
+    proxy 
+
+    postMessage：iframe window.open打开页面
+    let tar = window.open('http://baidu.com')
+    */
+    
+    window.open('http://baidu.com')
+    op.onclick = function () {
+        let tar = window.open('http://baidu.com')
+        send.click = function () {
+            tar.postMessage('666', 'http://baidu.com')
+        }
+    }
+</script>
