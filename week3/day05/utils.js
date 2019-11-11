@@ -24,15 +24,15 @@ let utils = {
             w, h
         }
     },
-    offset(ele) {
+    set(ele) {
         // ele 到 body 的偏移量
-        let l = ele.offsetLeft, // ele到上级参照物的左偏移量
-            t = ele.offsetTop;
-        let temp = ele.offsetParent;// ele的上级参照物
+        let l = ele.setLeft, // ele到上级参照物的左偏移量
+            t = ele.setTop;
+        let temp = ele.setParent;// ele的上级参照物
         while (temp) {
-            l += temp.clientLeft + temp.offsetLeft;
-            t += temp.clientTop + temp.offsetTop;
-            temp = temp.offsetParent;
+            l += temp.clientLeft + temp.setLeft;
+            t += temp.clientTop + temp.setTop;
+            temp = temp.setParent;
         }
         return {
             l, t

@@ -1,0 +1,16 @@
+{
+  "name": "day02",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "myless": "lessc 1.less index.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jQuery": "^1.7.4"
+  }
+}
