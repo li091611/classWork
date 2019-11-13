@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="用户名" id="usn">
+    <input type="password" placeholder="密码" id="pas">
+    <button id="btn">注册</button>
+    <button id="btn2" style="display: none;">登录</button>
+</body>
+
+</html>
+<script src="./jquery-3.3.1.js"></script>
+<script>
+
+    $('#btn').on('click', function () {
+        let name = $('#usn').val(),
+            pas = $('#pas').val();
+        $.post('http://localhost:8008/reg', {
+            username: name,
+            password: pas
+        }, function (data) {
+            console.log(data)
+            if (data.code == 1) {
+                alert('用户已经存在 请直接登录')
+            } else {
+                $('#btn').hide();
+                $('#btn2').show();
+                $('#pas').val('');
+            }
+        })
+    })
+    $('#btn2').on('click', function () {
+        let name = $('#usn').val(),
+            pas = $('#pas').val();
+        $.ajax({
+            type: 'post',
+            url: 'http://localhost:8008/login',
+            data: {
+                username: name,
+                password: pas
+            },
+            xhrFields: {
+                withCredentials: true
+            },
+            success: (data) => {
+                console.log(data)
+            }
+        })
+
+    })
+</script>
