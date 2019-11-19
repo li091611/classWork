@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <input type="text" >
+    </div>
+</body>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    /* 
+        v-model
+        c-text
+        v-html
+        v-once
+        v-cloak     不显示小胡子
+        v-pre       vue不编译
+     */
+    /* 
+        OBject.definedProperty(对象,属性名,{get(),set()})
+    */
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰"
+        }
+    })
+    let obj = {};
+    let o = new Proxy(obj, {
+        get(tar, key) {
+            console.log(tar, key)
+            return 666
+        },
+        set(tar, key, val) {
+            console.log(tar, key, val)
+            tar[key] = val;
+        }
+    })
+    // 给对象新增属性的时候，不会触发视图更新
+    // 1、一开始写好 undefined值 在视图不会显示
+    // 2、整个对象的替换
+    // 3、vm.$set(vm.obj,属性名，属性值)
+    // 4、增新一个无关变量；每次修改完数据，更新这个变量
+</script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // push pop shift unfift reverse splice sort
+
+    // forEach map filter some every find reduce
+    let ary = [1, 2, 3, 4, 5, 6]
+    ary.reduce(function (prev, next) {
+        console.log(arguments)
+        // 若第一次执行回调函数是prev是reduce的第二个参数，若不存在第二个参数 ，则prev就是数组中的第一项
+        // 在后面的回调 prev就是上一个回调的返回值 ，next就是当前项
+        // reduce 就是最后一次的返回值
+        return 666
+    })
+    let t = ary.reduce((prev, next) => prev + next)
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <button v-on:click = 'my_alert'>按钮</button>
+        <button @click = 'my_alert($event,666)'>按钮二</button>
+        <button @click = 'my_alert.call(this,112,323)'>按钮三</button>
+        <a href="http://baidu.com" @click.prevent = 'my_alert'>百度</a>
+    </div>
+</body>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    // v-on 是用来绑定时间的 指令    简写@
+    // @click = '函数名'， 在methods中的函数会接受一个事件的对象作为参数
+    // @click = '函数名()' 相当函数没有任何参数
+    // @click = '函数名(666)' 相当于给函数传一个实参“666”
+    // 既要穿参数又要传递事件对象 需要在实参中加 '$event'
+    //===================事件修饰符：prevent（preventDefault） stop（stopPropergation）
+                                    // once                     self只能点自己
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰"
+        },
+        methods: {
+            // 这个对象中都是当前实例中要用到的方法
+            my_alert(e) {
+                //这里面的this同意是当前的实例
+                console.log(arguments)
+                return 666
+            }
+        }
+    })
+</script>

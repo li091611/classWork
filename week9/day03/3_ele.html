@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../node_modules/element-ui/lib/theme-chalk/index.css">
+</head>
+
+<body>
+    <div id="app">
+        <el-input v-model="username" style="width: 200px;" placeholder="请输入用户名"></el-input>
+        <h2></h2>
+        <div>
+            <el-radio v-model="radio" label="1" v-model='sex'>男</el-radio>
+            <el-radio v-model="radio" label="2" v-model='sex'>女</el-radio>
+        </div>
+
+
+        <h2>课程</h2>
+        <div>
+            <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="checkAllFn">全选
+            </el-checkbox>
+            <div style="margin: 15px 0;"></div>
+            <el-checkbox-group v-model="course" @change="checkOneFn">
+                <el-checkbox v-for="item in citiesAry" :label="item.val" :key="item.val">{{item.text}}</el-checkbox>
+            </el-checkbox-group>
+        </div>
+
+        <h2>爱好</h2>
+        <div>
+            <select v-model=hobby>
+                <option v-for='item in ary' :value="item.val">{{item.text}}</option>
+            </select>
+
+        </div>
+        <div>
+            <h2>手机号</h2>
+            <input type="text" v-model='phone'>
+        </div>
+        <button @click='submit'>提交</button>
+    </div>
+</body>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script src="../../node_modules/element-ui/lib/index.js"></script>
+<script>
+    let obj = {
+        username: '',
+        course: '',
+        sex: '',
+        hobby: '',
+        phone: ''
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            radio: 1,
+            checkAll: false,
+            username: '',
+            ary: [
+                { val: 'eat', text: '吃' },
+                { val: 'play', text: '玩' },
+                { val: 'sleep', text: '睡觉' },
+                { val: 'learn', text: '学习' }
+            ],
+            course: [],
+            checkAll: false,
+            isIndeterminate: true,
+            citiesAry: [
+                { val: 'html', text: 'html' },
+                { val: 'css', text: 'scc' },
+                { val: 'js', text: 'js' },
+                { val: 'node', text: 'node' }
+            ],
+            isIndeterminate: true,
+            sex: '0',
+            hobby: '',
+            phone: '',
+
+        },
+        methods: {
+            submit() {
+                obj.username = this.username;
+                obj.course = this.course;
+                obj.sex = this.sex;
+                obj.hobby = this.hobby;
+                obj.phone = this.phone;
+                fetch('http://127.0.0.1:8080/add/userinfo', {
+                    method: 'post',
+                    body: JSON.stringify(obj)
+                }).then(response => response.json()).then(data => {
+                    console.log(data)
+                    if (data.code == 0) {
+                        alert('提交成功')
+                    }
+                })
+            }
+        },
+        checkAll(val) {
+            this.course = val ? cityOptions : [];
+            this.isIndeterminate = false;
+        },
+        checkOneFn(value) {
+            let checkedCount = value.length;
+            this.checkAll = checkedCount === this.cities.length;
+            this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
+        }
+
+    })
+</script>

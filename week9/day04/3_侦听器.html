@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model='name'>
+        <h1>{{name}}</h1>
+        <!-- <h2>{{msg}}</h2> -->
+        <div>{{watchMsg}}</div>
+    </div>
+</body>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            timer: null,
+            watchMsg: ''
+        },
+        computed: {
+            msg() {
+                clearTimeout(this.timer);
+                this.timer = setTimeout(() => {
+                    console.log(this.name)
+                }, 500);
+                console.log(5555)
+                // return this.name.length >= 5 ? '名字太长' : '';
+            }
+        },
+        watch: {
+            name(newValue, oldValue) {
+                clearTimeout(this.timer);
+                this.timer = setTimeout(() => {
+                    console.log(newValue, oldValue)
+                    this.watchMsg = this.name.length >= 5 ? '名字太长' : '';
+                }, 300);
+                // this.name = Math.random()
+            }
+        },
+    })
+</script>

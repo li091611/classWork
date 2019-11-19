@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../node_modules/vue/dist/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        框架 库
+        框架 你写代码 框架帮你调用
+        库   人家写好代码 你来调用
+
+        渐进式  vue vue—router  vuex    axiox
+            vue的ui组件库：ele  iview  移动端vant
+     -->
+    <div id="app" v-cloak>
+        <!-- 
+            小胡子语法
+            里面只能写表达式，不能写语句 
+        -->
+        <h1>{{qqq}}{{hello}}</h1>
+
+    </div>
+    <div id="app2">
+        <!-- 
+                小胡子语法
+                里面只能写表达式，不能写语句 
+            -->
+        <h1>{{hello}}</h1>
+        <h2 v-text="qqq"></h2>
+        <input type="number" v-model="age">
+        <h3>{{'age' > 18 ? '成年人' : '未成年人'}}</h3>
+        <div v-html='p'></div>
+        <input v-model='p'></input>
+        <!-- <h1>{{n=100}}</h1> -->
+        <h2>{{n}}</h2>
+    </div>
+</body>
+
+</html>
+<script>
+    /* 
+        
+        v-model = 'vvue变量'
+        v-text = 'vue变量'
+        v-html = 'vue变量'   
+        v-cloak 后面不跟值，就是利用的vue渲染完成之前 元素上还会带有
+        v-once 后面不跟值，有个个属性的元素vue只会渲染一次
+    */
+    new Vue({
+        el: '#app2',
+        // template:`<div>这是个指定模板{{qqq}}</div>`,
+        data: {
+            // data中的属性就是vue的变量
+            qqq: 'hello',
+            hello: '1231wqqw2',
+            age: null,
+            n: 0,
+            p: `<h3>步步为营</h3>`,
+            aaa: [1, 2, 3, 4]
+        }
+    })//   .$mount('#app2')
+</script>

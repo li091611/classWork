@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{name+age}}</h1>
+        {{obj.a}}
+    </div>
+</body>
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    /* 
+        改变vue中的数据 能触发视图更新 前提该数据有set 和 get
+        若没有get和set更改数据是不会触发视图的更新，但是 数据改了
+    */
+//    let a = 1;
+   let ary = [1,2,3,4,5]
+   function fn(){
+       return ary.map(item=>item)
+   }
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            //data中的属性都挂到vue实例身上
+            name:"珠峰",
+            age:fn(),
+            obj:{
+                a:12,
+                b:1
+            }
+        }
+    })
+    // vm.obj = Object.assign({b:123},vm.obj);//返回值是合并后的原有对象
+    // vm.$set(vm.obj,'b','666')
+</script>

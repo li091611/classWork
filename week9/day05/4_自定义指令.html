@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1 v-color='"red"'>{{name}}</h1>
+        <input type="text" v-focus='flag'>
+    </div>
+</body>
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    // Vue.filter(id, [definition])
+    Vue.directive('color', function(el,obj){
+        console.log(arguments)
+        el.style.color = obj.value || '#333'
+    })
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            name:"珠峰",
+            flag:true
+        },
+        directives:{
+            color(el,obj){
+                el.style.color = 'orange'
+            },
+            focus(el,obj){
+                if(obj.value){
+                   setTimeout(() => {
+                    el.focus()
+                   }, 10);
+                }else{
+
+                }
+            }
+        }
+    })
+</script>

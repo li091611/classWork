@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [c-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <button @click='change'>{{type}}</button>
+        <h1 v-show='show'>{{name}}</h1>
+    </div>
+</body>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            type: 'hide',
+            show: 1
+        },
+        methods: {
+            change() {
+                this.show = !this.show;
+                this.type = this.show ? 'hide' : 'show'
+            }
+        }
+    })
+</script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+
+        <ul>
+            <li v-for='(k,i) in body' v-show="type[i]" >{{k}}</li>
+        </ul>
+        <button v-for='(item,index) in ary' @click='show(index)'>{{item}}</button>
+    </div>
+</body>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            ary: ['js', 'css', 'html', 'vue',],
+            body: ['js666', 'cs666s', 'html666', 'vue666',],
+            type: [0,0,0,0],
+            n: 0
+        },
+        methods: {
+            show(index) {
+                this.type[index] = !this.type[index]
+                console.lo
+            }
+        },
+    })
+</script>

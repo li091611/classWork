@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model='name' @input=''>
+        <h1>{{name.split('').reverse().join('')}}</h1>
+        <h2>{{name|reverse}}</h2>
+        <h2>{{reverse(name)}}</h2>
+        <h2>{{reverseName}}</h2>
+        {{t}}
+    </div>
+</body>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        /* 
+            el,data,template,methods,filters,created
+        */
+        el: '#app',
+        data: {
+            name: "珠峰",
+            t:0
+        },
+        // template:'<div>hello</div>',
+        methods: {
+            fn(){}, //this 是当前实例
+            reverse(){
+                return this.name.split('').reverse().join('')
+            }
+        },
+        filters:{
+            // 管道符  | 
+            fn(val){//this不是当前实例
+                console.log(this)
+            },
+            reverse(val){
+                return val.split('').reverse().join('')
+            }
+        },
+        created() {
+            //一进来就执行
+        },
+        computed: {
+            // 计算属性
+            // 计算属性对应的值 会被挂在当前实例上，挂在当前实例的的内容是当前函数的返回值
+            reverseName(){
+                // 计算属性 
+                // 计算属性 会有一个对应的缓存， 计算属性的依赖值不会发生改变
+                // 计算属性不发生改变那么视图更新的时候不会再执行函数
+                return this.name.split('').reverse().join('')
+            },
+            reverseName2:{
+                get(){
+                    return this.name.split('').join('+')
+                },
+                set(val){
+                    console.log(val)
+                }
+            }
+        },
+    })
+</script>

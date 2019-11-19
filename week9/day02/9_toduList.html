@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+        }
+    </style>
+</head>
+<!-- {
+	// Place your snippets for log here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+}
+ -->
+
+<body>
+    <div id="app">
+        <input type="text" v-model='val' @keydown.13='add'>
+        <h1>{{val}}</h1>
+        <ul class="box">
+            <li v-for="(item, index) in ary">{{item}}<button @click='sp(index,1)'>x</button></li>
+
+        </ul>
+    </div>
+</body>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    [].unshift
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            val: '',
+            ary: [] 
+        },
+        methods: {
+            add() {
+                if (this.val) {
+                    this.ary.unshift(this.val)
+                    this.val = '';
+                }
+            },sp(n,m,b){
+                this.ary.splice(n,m,b)
+                console.log(this.ary,n)
+            }
+        },
+    })
+</script>

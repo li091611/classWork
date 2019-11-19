@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>水果栏目</h2>
+        <input type="checkbox" id="all" c-model='all' @change='fn'><label for="all">全选</label>
+        <input type="checkbox" value="1" id="apple" v-model='checklist'><label for="apple">苹果</label>
+        <input type="checkbox" value="2" id="banana" v-model='checklist'><label for="banana">香蕉</label>
+        <input type="checkbox" value="3" id="apple2" v-model='checklist'><label for="apple2">苹果</label>
+        <input type="checkbox" value="4" id="apple3" v-model='checklist'><label for="apple3">苹果</label>
+        <template>
+            <!-- 无用标签 -->
+            <div>
+                
+            </div>
+        </template>
+    </div>
+</body>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+
+    //  backAry:['apple','banana','pear','orange','peach'],
+
+    // v-bind ：专门用来绑定行内属性使用的 简写是   ：   冒号
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            checklist: [],
+            all: false
+        }, methods: {
+            fn() {
+                this.all = !this.all;
+                console.log(this.all)
+                if (this.all) {
+                    this.checklist = [1, 2, 3, 4,]
+                } else {
+                    this.checklist = [];
+                }
+            }
+        },
+    })
+</script>
