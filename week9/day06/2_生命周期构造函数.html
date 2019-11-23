@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="qqq">{{name}}</h1>
+    </div>
+</body>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    /* 
+        生命周期钩子构造函数 是vue提供的 几个在对于时间 执行的函数
+        我们可以在 对应的函数中 执行自己的对应的事件
+    */
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name:'珠峰'
+        },
+        methods: {
+
+        },
+        beforeCreate() {
+            console.log('beforeCreate');
+        },
+        created() {
+            //初始化的操作一般都会放到created里面
+            // 这个钩子是第一个能获取到当前实例数据的钩子
+            console.log('created');
+        },
+        beforeMount() {
+            console.log('beforeMount');
+        },
+        mounted() {
+            // 获取dom的操作一般都是在 counted 这里面
+            console.log('mounted');
+            // console.log(document.querySelector('.qqq'))
+        },
+        beforeUpdate() {
+            // 更新数据的时候触发并且试图更新的时候触发
+            console.log('beforeUpdate');
+        },
+        updated() {
+            console.log('updated');
+            console.log(this);
+            debugger
+        },
+        beforeDestroy() {
+            console.log('beforeDestroy');
+        },
+        destroyed() {
+            console.log('destroyed');
+        },
+
+    });
+    // vm.$destroy();  切断了更新视图
+</script>

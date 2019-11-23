@@ -1,5 +1,5 @@
-Vue.directive('focus', function(el,obj){
-    if(obj.value){
+Vue.directive('focus', function(el, obj) {
+    if (obj.value) {
         setTimeout(() => {
             el.focus()
         }, 10);
@@ -24,7 +24,7 @@ new Vue({
             todo: '吃饭2',
             done: true,
             editable: false,
-        },]
+        }, ]
     },
     methods: {
         add() {
@@ -41,7 +41,7 @@ new Vue({
         },
         change(item) {
             item.editable = !item.editable
-            
+
         }
     },
 })

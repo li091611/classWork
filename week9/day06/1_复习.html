@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model='obj.a'>
+             <h2>{{obj.a}}</h2>
+    </div>
+</body>
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    /* 
+        v-model v-text v-html v-cloak
+
+        自定义指令 Vue.directive(指令名,function(el,obj))
+                    directives:{指令名(el,obj){}}
+
+                    
+             <template>
+             </template>  
+             <transition>
+             </transition>
+    */
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            name:"珠峰",
+            obj:{a:12}
+        }
+    })
+    console.log();
+</script>

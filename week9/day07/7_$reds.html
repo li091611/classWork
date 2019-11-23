@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <ul>
+            <li v-for="(item, index) in ary" :key="index" ref='qqq'></li>
+        </ul>
+        <ul>
+            <li ref="www"></li>
+            <li ref="www"></li>
+            <li ref="www"></li>
+        </ul>
+        <my-btn v-for='item in ary'  :key="item" ref='qqq'></my-btn>
+    </div>
+</body>
+<template id="btn">
+        <button @click='clickFn' class="aaa" >按钮</button>
+</template>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+
+    // refs 不仅可以拿到元素 也可以获取组件
+    // 获取组件之后 我们就可以根据自己的需求进行编写
+
+    //父组件怎么调用到 子组件的 methods中的函数
+    //子组件怎么调用到 父组件的 methods中的函数
+    let obj = {
+        template: '#btn',
+        methods: {
+            clickFn(e) {
+                this.$emit('click', e)
+            }
+        },
+
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: '珠峰',
+            ary: [1, 2, 3, 4]
+        },
+        mounted() {
+            console.log(this.$refs.qqq)
+            console.log(this.$refs.www)
+            this.ary.pop()
+            console.log(this.$refs.qqq)
+            this.$nextTick(() => {
+                //DOM跟新完成之后触发;DOM的跟新是异步的
+                console.log(this.$refs.qqq)
+            })
+        },
+        components:{
+            'my-btn':obj
+        },
+        methods: {
+            fn(){
+                console.log(arguments)
+            }
+        },
+    });
+</script>
