@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <my></my>
+    </div>
+</body>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    // 混入对象 ,把混入对象中的data 合并到每一个data,若属性名冲突则以组件中的属性为准,
+    // 把混入对象 中的所有钩子函数 添加到每一个函数,并且先执行混入队象的钩子函数,再去执行组件中对应钩子函数
+    Vue.mixin({//混入
+        data() {
+            return {
+                qqq:123,
+                name:'444'
+            }
+        },
+        beforeCreate() {
+            console.log('mixin beforeCreate')
+        },
+        mounted() {
+            console.log('mixin monted')
+        },
+    })
+    Vue.component('my',{
+        render(h) {
+            return h('h2',{class:'qqq'},'hello')
+        },
+        beforeCreate() {
+            console.log('my beforeCreate');
+        },
+        mounted() {
+            console.log('my mounted')
+        },
+    })
+    
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: '珠峰'
+        },beforeCreate() {
+            console.log('vm beforeCreate');
+        },
+        mounted() {
+            console.log('vm mounted')
+        },
+    });
+</script>

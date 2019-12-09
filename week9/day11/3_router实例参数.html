@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <!-- 
+            两个类名 
+                        1/router-link-exact-active
+                        1/router-link-active
+                        exact类名 只有当路径,参数地址栏中的一模一样时,才会加上这个类名
+                        若路径一样 但是参数值不一样是 只有 2类名
+                        若路径一样 但是参数个数不一样是但是参数不一样,则两个类名都不加
+                        若路径一样 但是参数个数少了若干个,存在的参数名一样,只有 2 类名
+         -->
+        <router-link to="home?&a=12&b=13">首页</router-link>
+        <router-link :to="{path:'/home',query:obj}">首页</router-link>
+        <router-link :to="{path:'/list',query:obj}">列表页</router-link>
+
+        <router-view></router-view>
+    </div>
+</body>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script src="../../node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    Vue.use(VueRouter);
+    /* 
+        路由映射表,是个数组
+        roter-link  to tag  query   
+        router-view
+
+        $router $route
+     */
+    let home = {
+        template: "<h2>首页</h2>",
+        created() {
+            console.log(this.$route.query)
+        },
+    }
+    let list = {
+        template: "<h2>列表页</h2>",
+        created() {
+            console.log(this)
+        },
+    }
+    //设置404路由
+    let page404 = {
+        template: '<h2>404</h2>'
+    }
+
+    const routes = [
+        {
+            // 第一次进入的时候跳到指定页面
+            path:'/',
+            redirect:'/list'
+        },
+        {
+            path: '/home',
+            component: home,
+            name: 'home'
+        },
+        {
+            path: '/list',
+            component: list,
+            name: 'list'
+        },
+        // 设置404页面
+        // {
+        //     path: '*',
+        //     component: page404
+        // },
+        {
+            // 重定向 找不到路径统一走到home
+            path:'*',
+            // redirect:'/home'
+        }
+
+    ]
+    let router = new VueRouter({
+        routes,
+        // 所有的激活类名都换成了指定类名,
+        linkActiveClass: 'qqq',
+        linkExactActiveClass: 'aaa',
+        // mode: 'history',//默认hash,   history 必须让后台支持 返回指定页
+    })
+    let vm = new Vue({
+        el: '#app',
+        router,
+        data: {
+            name: '珠峰',
+            obj: {
+                a: 12,
+                b: 13,
+                c: 14
+            }
+        },
+    });
+</script>

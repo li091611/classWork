@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        {{$store.state.count}}
+        <my-btn></my-btn>
+    </div>
+</body>
+<template id="my-btn">
+    <div>
+        <!-- <h3>{{$store.state.count}}</h3> -->
+        <!-- <h2>{{myn}}</h2>
+        <h2>{{myn2}}</h2> -->
+        <h2>{{count}}</h2>
+        <button @click='add'>+</button>
+        <button @click='list'>-</button>
+    </div>
+</template>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script src="../../node_modules/vuex/dist/vuex.js"></script>
+<script>
+    let store = new Vuex.Store({
+        state: {
+            count: 0
+        },
+        mutations: {
+            // 存储的都是用来改变state的方法
+            // 我们需要通过$store.commit这个方法来触发对应的函数
+            change(state, obj) {
+                console.log(arguments);
+                state.count += obj.n
+            }
+        }
+    })
+    Vue.component('my-btn', {
+        template: '#my-btn',
+        data() {
+            return {
+                // myn: this.$store.state.count
+            }
+        },
+        computed: {
+            // 我们一般都是 计算属性 来接收 vuex中的属性
+            /*  myn2() {
+                 return this.$store.state.count 
+             } */
+
+
+            // ...Vuex.mapState({
+            //     myn2: state => state.count
+            // }),
+
+            
+            ...Vuex.mapState(['count'])
+        },
+        methods: {
+            add() {
+                // this.$store.commit(mutations中的方法名称,   第二个参数一般是队形)
+                this.$store.commit('change', { n: 1 })
+            },
+            list() {
+                this.$store.commit('change', { n: -1 })
+            }
+        },
+    })
+    let vm = new Vue({
+        store,//注册完之后 每一个后代组件身上都有一个$store属性
+        el: '#app',
+        data: {
+            name: '珠峰'
+        },
+    });
+</script>

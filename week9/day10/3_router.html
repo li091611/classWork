@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .enter {
+            animation: enterMove 0.5s ease-in;
+        }
+
+        .leave {
+            animation: leaveMove 0.5s ease-in;
+        }
+
+        @keyframes enterMove {
+            0%{
+                opacity: 0;
+                transform: translateX(-200px);
+            }
+            100%{
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes leaveMove {
+            0%{
+                opacity: 1;
+                transform: translateX(0);
+            }
+            100%{
+                opacity: 0;
+                transform: translateX(-200px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+
+        <button @click='home'></button>
+        <button @click='list'></button>
+        <transition>
+        
+        </transition>
+    </div>
+</body>
+
+</html>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script src="../../node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+
+    /* 
+    console.log(
+        `%c vue-devtools %c Detected Vue v${Vue.version} %c`,
+        'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+        'background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+        'background:transparent'
+      )
+       */
+    // SPA single 
+    let home = {
+        template:"<h2></h2>"
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: '珠峰'
+        },
+    });
+</script>

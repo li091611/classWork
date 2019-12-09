@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <my-head :level='n'>
+            hello
+        </my-head>
+        <my-head2></my-head2>
+    </div>
+</body>
+
+</html>
+
+<template id='myHead'>
+    <h1 v-if="level === 1">
+        <slot></slot>
+    </h1>
+    <h2 v-else-if="level === 2">
+        <slot></slot>
+    </h2>
+    <h3 v-else-if="level === 3">
+        <slot></slot>
+    </h3>
+    <h4 v-else-if="level === 4">
+        <slot></slot>
+    </h4>
+    <h5 v-else-if="level === 5">
+        <slot></slot>
+    </h5>
+    <h6 v-else-if="level === 6">
+        <slot></slot>
+    </h6>
+</template>
+
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('my-head',{
+        template:'#myHead',
+        props:['level']
+    })
+    Vue.component('my-head2',{
+        render:function(h){
+            console.log(h)
+            return `<div></div>`
+        }
+    })
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            n:1,
+        }
+    });
+</script>
